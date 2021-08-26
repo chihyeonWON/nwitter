@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { dbService, storageService } from "fbase";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const NweetFactory = ({ userObj }) => {
     const [nweet, setNweet] = useState("");
@@ -8,6 +10,9 @@ const NweetFactory = ({ userObj }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+        if (nweet == ""){
+            return;
+        }
         let attachmentUrl = "";
         if (attachment !=="") {
         const attachmentRef = storageService
